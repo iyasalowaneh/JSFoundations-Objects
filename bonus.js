@@ -7,9 +7,28 @@ const channels = require("./channels.json");
  *
  * BONUS: use iteration method `.reduce()`
  ****************************************************************/
-function totalVideosDuration(channel) {
-  // Your code here
-}
+
+const totalVideosDuration = (channel) =>
+  channel.videos.reduce(function (total, totduration) {
+    return total + totduration.duration;
+  }, 0);
+console.log(totalVideosDuration(channels[0]));
+
+// const sum = channel.reduce((acc, elem) => {
+//   return acc + elem.duration, 0;
+// });
+// console.log(sum);
+// console.log(totalVideosDuration(channels));
+
+// console.log(numberOfVideos(channels[0]));
+//}
+//console.log(totalVideosDuration(channels));
+
+//console.log(channels.reduce(reduser));
+//const sum = channels[0].videos.reduce(function (total, channel) {
+// return total + channel.duration;
+//}, 0);
+//console.log(sum);
 
 /**************************************************************
  * channelWithMostContent(channels):
@@ -19,10 +38,18 @@ function totalVideosDuration(channel) {
  * Hint: use the `totalVideosDuration()` function
  * BONUS: use iteration method `.sort()`
  ****************************************************************/
-function channelWithMostContent(channels) {
-  // Your code here
-}
+//function channelWithMostContent(channels) {
+// Your code here
+//}
+const channelWithMostContent = (channels) => {
+  let x = channels.sort(function (a, b) {
+    let d1 = totalVideosDuration(a);
+    let d2 = totalVideosDuration(b);
+    return d2 - d1;
+  });
 
+  return channels.slice(0, 1);
+};
 /**************************************************************
  * longestChannelName(channels):
  * - receives an array of channel objects
@@ -30,13 +57,26 @@ function channelWithMostContent(channels) {
  *
  * BONUS: use iteration method `.sort()`
  ****************************************************************/
-function longestChannelName(channels) {
-  // Your code here
-}
 
+const longestChannelName = (channels) => {
+  let longest = channels.sort(function (chaa, chab) {
+    let n1 = chaa.name;
+    let n2 = chab.name;
+
+    if (n1 < n2) {
+      return -1;
+    }
+    if (n2 > n1) {
+      return 1;
+    }
+    return 0;
+  });
+
+  return channels.slice(0, 1);
+};
 // Check your answers by running this file and comparing what it logs
 
-console.log(totalVideosDuration(channels[0]));
+//console.log(totalVideosDuration(channels[0]));
 // Should log:
 
 // 636
